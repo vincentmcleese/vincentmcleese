@@ -1,0 +1,125 @@
+/* Custom font - replace with your choice */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+html {
+  background-color: white; /* Ensure underlying page is white for the fade effect */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Placeholder for accent color */
+:root {
+  --accent-color: #4a5568; /* Dark grayish-blue */
+}
+
+.landing-page-container {
+  position: relative; /* Already in JSX, but good to have here for clarity */
+  z-index: 0; /* Establish stacking context */
+  background-color: transparent; /* Ensure parent background doesn't hide pseudo-element */
+}
+
+.landing-page-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(/vincentlowpoly.png);
+  background-position: top; /* Mobile default: image at top */
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: -1; /* Sit behind the content */
+
+  /* Mobile-first: Bottom fade of image itself */
+  -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 35%);
+  mask-image: linear-gradient(to bottom, black 20%, transparent 35%);
+}
+
+@media (min-width: 768px) {
+  /* md breakpoint */
+  .landing-page-container::before {
+    background-position: left; /* Desktop: image to the left */
+    /* Desktop: Side fade */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
+    );
+  }
+}
+
+/* Card styles */
+.max-w-xl {
+  max-width: 800px; /* Max width for the card on larger screens */
+}
+
+/* Ensure card takes majority of screen on mobile */
+@media (max-width: 640px) {
+  .max-w-xl {
+    margin-left: 1rem; /* 16px */
+    margin-right: 1rem; /* 16px */
+    width: calc(100% - 2rem);
+  }
+  .bg-black.md\:bg-black\/90.p-8.md\:p-12 {
+    padding: 1.5rem; /* 24px for smaller screens */
+  }
+  .text-4xl.md\:text-5xl {
+    font-size: 2.25rem; /* 36px for smaller screens */
+  }
+}
+
+/* Input and Button styling to use accent color */
+.focus\:ring-blue-500:focus {
+  --tw-ring-color: var(--accent-color);
+}
+
+.bg-blue-600 {
+  background-color: var(--accent-color);
+}
+
+.hover\:bg-blue-700:hover {
+  filter: brightness(0.9);
+}
+
+/* Social icon hover color */
+.hover\:text-blue-500:hover {
+  color: var(--accent-color);
+}
+
+/* Custom font for the title if different from body */
+.font-sans {
+  /* Example: using a different font for the heading if desired */
+  /* font-family: 'AnotherFont', sans-serif; */
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp-main {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fadeInUp-footer {
+  animation: fadeInUp 0.6s ease-out 0.2s forwards; /* 0.2s delay */
+}
