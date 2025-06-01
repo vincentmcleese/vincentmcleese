@@ -70,7 +70,7 @@ export default function LandingPage() {
               Vincent Friend Newsletter
             </h1>
             <p className="text-gray-200 text-center mb-8 text-lg">
-              Occasional updates. That's it folks.
+              Occasional updates. That&apos;s it folks.
             </p>
             <form
               onSubmit={handleSubmit}
